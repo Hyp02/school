@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+
+    <title>快递信息</title>
+    <style>
+        /* 样式代码省略 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", "Segoe UI", "Helvetica", "Arial", sans-serif;
+        }
+
+        #app {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .pickup-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .delivery-info {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .info-item span:first-child {
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            cursor: pointer;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 6px 12px;
+            text-align: center;
+            text-decoration: none;
+            width: 120px;
+        }
+
+        .find-button {
+            background-color: #4caf50;
+        }
+
+        .help-button {
+            background-color: #2196f3;
+        }
+
+        header {
+            background-color: #1c3d61;
+            line-height: 4em; /* 调整行高 */
+        }
+
+        header h1 {
+            color: white;
+            text-align: center;
+            margin: 0; /* 去除默认的外边距 */
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px; /* 可选 - 调整按钮与上方元素之间的距离 */
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1 style="text-align:center;">快递代取</h1>
+    <div class="find-button button-container">
+        <div class="find-button button" style="font-size: 18px;"><a th:href="@{/kd/KuaiDiIssued}">我要找代送</a></div>
+    </div>
+</header>
+<br>
+<br>
+<div class="sidebar">
+    <h2>注意</h2>
+    <ul class="playlist">
+
+        <br><br>
+        <spand>
+            <b style="font-size: 20px">欢迎来到校园代送服务平台</b><br>
+            <h3>在这里你可以:</h3>
+            发布校园快递代取信息<br>
+            可发布校园内各种代送信息<br
+            可代取快递，早中晚餐，配送童装矿泉水 <br>
+            在这里我们将更好的为同学们服务
+            <br>
+            <br>
+            <br>
+            <h4>配送价格表</h4>
+            <li>快递： 大件2元  小件1元</li>
+            <li>早中午晚餐 2元</li>
+            <li>……</li>
+            <br>
+        </spand>
+
+    </ul>
+</div>
+<div style="float: left; margin-right: 20px;position: fixed;margin-top: 50px;">
+
+    <nav>
+
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/}">首页</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/kd/getAllKdInfo}" style="">代送服务</a></span></li>
+        </ul>
+        <br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/print/printIndex}" style="">打印服务</a></span></li>
+        </ul>
+
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a href="http://zsw.slxy.edu.cn/">招生信息</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/studentServer}">学习资源</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/examServer}">考试服务</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a
+                    href="http://www.slxy.edu.cn:1170/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t=1680699648407">教务系统</a></span>
+            </li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a id="indexFindJob"th:href="@{/login}">校园招聘</a></span></li>
+        </ul>
+        </br>
+
+
+    </nav>
+</div>
+<div id="app">
+    <div class="pickup-wrapper">
+        <!--kd发布的快递信息-->
+        <div class="delivery-info" th:each="kd : ${kdList}">
+            <form method="get" th:action="@{/task/addTask}">
+                <!--要将发布任务的人的信息当做任务信息存放-->
+                <input name="loginName" th:value="${session.login.getUsername()}" type="hidden">
+                <input name="SHname" th:value="${kd.name}" type="hidden">
+                <input name="taskName" th:value="${kd.kdName}" type="hidden">
+
+                <input name="issuedName" th:value="${kd.name}" type="hidden">
+                <input name="kdid" th:value="${kd.KdId}" type="hidden">
+
+                <input name="phone" th:value="${kd.phone}" type="hidden">
+                <input name="address" th:value="${kd.address}" type="hidden">
+                <!--接单人的信息-->
+                <input name="helpName" th:value="${session.login.getUsername()}" type="hidden">
+                <input name="helpPhone" th:value="${session.login.getPhone_num()}" type="hidden">
+
+
+                <div class="info-item">
+                    <span>收件人：</span>
+                    <span th:text="${kd.name}"></span>
+                </div>
+                <div class="info-item">
+                    <span>手机号：</span>
+                    <span th:text="${kd.phone}"></span>
+                </div>
+                <div class="info-item">
+                    <span>代取类型：</span>
+                    <span th:text="${kd.kdName}"></span>
+                </div>
+                <div class="button-group">
+                    <div class="help-button button"><input type="submit" value="帮取"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+<div th:replace="Footer::footer"></div>
+</body>
+</html>

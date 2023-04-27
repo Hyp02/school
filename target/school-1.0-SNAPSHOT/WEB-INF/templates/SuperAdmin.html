@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>超级管理员页面</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f1f1f1;
+            color: #333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 50px;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            background-color: #fff;
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        hr {
+            border-top: 1px solid #ccc;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .flex-item {
+            flex-basis: calc(33.33% - 20px);
+            margin-bottom: 20px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .flex-item {
+                flex-basis: calc(50% - 20px);
+            }
+        }
+
+        @media only screen and (max-width: 576px) {
+            .form-group {
+                padding: 20px;
+            }
+
+            legend {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>超级管理员页面</h1>
+    <hr>
+    <div class="flex-container">
+        <div class="flex-item">
+            <div class="form-group">
+                <fieldset>
+                    <legend>添加新网站管理员</legend>
+                    <form class="ajax-form" method="post" th:action="@{/superAdmin/addAdmin}">
+
+                        <label for="username">用户名:</label>
+                        <input id="username" name="username" required type="text">
+                        <label for="password">密码:</label>
+                        <input id="password" name="password" required type="password">
+                        <label for="email">邮箱:</label>
+                        <input id="email" name="Email" required type="email">
+                        <label for="phone">手机号:</label>
+                        <input id="phone" name="phone_num" required type="tel" pattern="[0-9]{11}">
+
+                        <br><br>
+                        <input type="submit" value="提交">
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="flex-item">
+            <div class="form-group">
+                <fieldset>
+                    <legend>删除网站管理员</legend>
+                    <form class="ajax-form" method="post" th:action="@{/superAdmin/deleteAdmin}">
+                        <label for="admin_id">请输入要删除的管理员ID:</label>
+                        <br>
+                        <input id="admin_id" name="id" required type="text">
+                        <br><br>
+                        <input type="submit" value="删除">
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="flex-item">
+            <div class="form-group">
+                <fieldset>
+                    <legend>删除用户</legend>
+                    <form class="ajax-form" method="post" th:action="@{/superAdmin/deleteUser}">
+                        <label for="user_id">请输入要删除的用户ID:</label>
+                        <br>
+                        <input id="user_id" name="id" required type="text">
+                        <br><br>
+                        <input type="submit" value="删除">
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <hr>9
+
+</div>
+<!-- 引入 jQuery 库 -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 绑定表单提交事件 -->
+<script>
+    $(document).ready(function() {
+        $('.ajax-form').on('submit', function(e) {
+            // 阻止表单的默认提交行为
+            e.preventDefault();
+
+            // 获取表单数据
+            var formData = $(this).serialize();
+
+            // 发送 ajax 请求
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: formData,
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                dataType: "text",
+                success: function(response) {
+                    // 处理服务器端返回的响应数据
+                    alert(JSON.stringify(response));
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    // 处理请求错误
+                    alert(xhr.status + ": " + thrownError);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

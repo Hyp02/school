@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成功</title>
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+        p {
+            line-height: 1.5;
+            font-size: 16px;
+            color: #666;
+        }
+        a {
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="Header::header"></div>
+<div class="container">
+    <h1>操作成功</h1>
+    <p>恭喜您，操作成功！</p>
+    <p><a th:href="@{/alreadyLogin}">返回首页</a></p>
+    <br>
+    <b>打印店老板已接单，请在1~2小时内在一号公寓楼下根据姓名领取打印单</b>
+</div>
+</body>
+</body>
+</html>

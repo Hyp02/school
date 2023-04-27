@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/user/findUserById/27}">userid = 21</a><br>
+<a th:href="@{/kd/getKdByName/韩}">name = 韩</a><br>
+<a th:href="@{/kd/getAllKdInfo}">获取所有快递信息</a><br>
+
+<form th:action="@{/kd/AddKdInfo}" method="post">
+    <label for="name">姓名：</label>
+    <input type="text" id="name" name="name">
+
+    <label for="phone">联系方式(手机号)：</label>
+    <input type="tel" id="phone" name="phone">
+
+    <label for="pickup-code">取货码：</label>
+    <input type="text" id="pickup-code" name="KdId">
+
+    <button type="submit">发布</button>
+</form><br>
+<form method="post" th:action="@{/register}">
+    username <input name="username" type="text">
+    password <input name="password" type="text">
+    Email <input name="Email" type="text">
+    p<input type="text" name="phone_num">
+    <input type="submit" name="注册">
+
+</form>
+</body>
+</html>

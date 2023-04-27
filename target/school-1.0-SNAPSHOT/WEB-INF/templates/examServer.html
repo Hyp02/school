@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+
+  <title>考试报名官网链接</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* 链接样式 */
+    a {
+      color: #000;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    a:hover {
+      color: #007bff;
+      text-decoration: underline;
+    }
+
+    /* 列表样式 */
+    ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    li {
+      background-color: #5fd5ed;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* 链接注释样式 */
+    li::before {
+      content: attr(title);
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: #999;
+    }
+    /* 页眉样式 */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header img {
+      height: 50px;
+    }
+
+    .header h2 {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="Header::header"></div>
+<br>
+<br>
+<h1>大学生考试汇总</h1>
+<ul>
+  <li><a href="http://www.chsi.com.cn/">全国硕士研究生招生考试</a></li>
+  <li><a href="http://cet.neea.edu.cn/">全国大学生英语竞赛</a></li>
+  <li><a href="http://www.ncrenju.com/">全国计算机等级考试</a></li>
+  <li><a href="https://www.ets.org/toefl/">TOEFL 考试</a></li>
+  <li><a href="https://www.ielts.org/">IELTS 考试</a></li>
+  <li><a href="https://www.ets.org/gre/">GRE 考试</a></li>
+  <li><a href="https://www.mba.com/">GMAT 考试</a></li>
+  <li><a href="http://cet.neea.edu.cn/">中级会计职称考试</a></li>
+  <li><a href="https://cicpa.ca/">注册会计师考试</a></li>
+  <li><a href="http://www.bjgwy.org/">公务员考试</a></li>
+  <li><a href="http://www.jszg.edu.cn/">教师招聘考试</a></li>
+  <li><a href="http://www.csac.gov.cn/">律师考试</a></li>
+  <li><a href="https://new.cpta.com.cn/">会计从业资格考试</a></li>
+  <li><a href="http://www.chinalegal.org/">全国法律职业资格考试</a></li>
+  <li><a href="http://www.ctacpa.net/">注册税务师考试</a></li>
+  <li><a href="http://www.nmec.org.cn/">中国执业医师资格考试</a></li>
+  <li><a href="http://www.mee.gov.cn/">技能操作证书考试</a></li>
+  <li><a href="http://www.ejswxh.com/index.php">高级技工/技师职业资格考试</a></li>
+  <li><a href="http://www.hsk.org.cn/">普通话水平测试</a></li>
+  <li><a href="http://www.cva.org.cn/">资产评估师考试</a></li>
+  <li><a href="https://ncre.neea.edu.cn/">计算机等级考试</a></li>
+  <li><a href="https://cet.neea.edu.cn/">英语四六级考试</a></li>
+</ul>
+<div th:replace="Footer::footer"></div>
+<script>
+  // 1. 鼠标悬停效果
+  var links = document.getElementsByTagName("a");
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener("mouseover", function() {
+      this.style.color = "#007bff";
+      this.style.textDecoration = "underline";
+    });
+    links[i].addEventListener("mouseout", function() {
+      this.style.color = "#000";
+      this.style.textDecoration = "none";
+    });
+  }
+
+  // 2. 点击链接效果
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener("click", function() {
+      this.style.color = "#dc3545";
+    });
+  }
+
+  // 3. 页面加载时效果
+  var items = document.getElementsByTagName("li");
+  var delay = 100;
+  for (var i = 0; i < items.length; i++) {
+    items[i].style.opacity = 0;
+    items[i].style.transform = "translateY(20px)";
+    items[i].style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
+    setTimeout(function(item) {
+      item.style.opacity = 1;
+      item.style.transform = "translateY(0)";
+    }, delay * i, items[i]);
+  }
+
+  // 4. 点击列表元素效果
+  for (var i = 0; i < items.length; i++) {
+    items[i].addEventListener("click", function() {
+      this.style.backgroundColor = "#ffc107";
+    });
+  }
+</script>
+</body>
+</html>

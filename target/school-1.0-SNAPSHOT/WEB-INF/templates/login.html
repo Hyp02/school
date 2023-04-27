@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" th:href="@{/static/css/login.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+    <title>登录</title>
+</head>
+<body>
+<header>
+    <div id="header_img">
+        <img class="logo" height="55%" th:src="@{/static/img/logo.png}" width="55%"/>
+        <h1>校园服务平台</h1>
+    </div>
+</header>
+<form th:action="@{/user/UserLogin}" method="get">
+    <h2>登录</h2>
+    <label for="username">用户名：</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">密码：</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="submit" value="登录">
+</form>
+<footer style="background-color: black; color: white; text-align: center; padding: 10px;clear: both;height: 80px">
+    <p>
+        Copyright &copy; 2023 -
+        <a href="http://www.slxy.cn/">My school</a>
+    </p>
+    <p>ShangLuo University</p>
+</footer>
+</body>
+</html>

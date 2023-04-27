@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+    <title>文件上传</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            width: 600px;
+            margin: 3em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d9534f;
+            font-size: 2.5em;
+            margin-bottom: 1em;
+        }
+
+        input[type=file] {
+            /*display: none;*/
+        }
+
+        label {
+            display: inline-block;
+            margin-top: 1em;
+            margin-bottom: 2em;
+            padding: 1em 2em;
+            color: #fff;
+            background-color: #d9534f;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        label:hover {
+            background-color: #a94442;
+        }
+
+        .file-names {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 2em auto;
+            padding: 1em 2em;
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #a94442;
+        }
+
+        /* 样式代码省略 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", "Segoe UI", "Helvetica", "Arial", sans-serif;
+        }
+
+        #app {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .pickup-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .delivery-info {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .info-item span:first-child {
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            cursor: pointer;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 6px 12px;
+            text-align: center;
+            text-decoration: none;
+            width: 120px;
+        }
+
+        .find-button {
+            background-color: #4caf50;
+        }
+
+        .help-button {
+            background-color: #2196f3;
+        }
+
+        header {
+            background-color: #1c3d61;
+            line-height: 4em; /* 调整行高 */
+        }
+
+        header h1 {
+            color: white;
+            text-align: center;
+            margin: 0; /* 去除默认的外边距 */
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px; /* 可选 - 调整按钮与上方元素之间的距离 */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="text-align:center;">校园打印服务</h1>
+    <div class="find-button button-container">
+    </div>
+</header>
+<div style="float: left; margin-right: 20px;position: fixed;margin-top: 50px;">
+
+    <nav>
+
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/}">首页</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a style="" th:href="@{/kd/getAllKdInfo}">代送服务</a></span></li>
+        </ul>
+        <br>
+        <ul>
+            <li><span style="text-align:center;"><a style="" th:href="@{/print/printIndex}">打印服务</a></span></li>
+        </ul>
+
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a href="http://zsw.slxy.edu.cn/">招生信息</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/studentServer}">学习资源</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/examServer}">考试服务</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a
+                    href="http://www.slxy.edu.cn:1170/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t=1680699648407">教务系统</a></span>
+            </li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a id="indexFindJob" th:href="@{/login}">校园招聘</a></span></li>
+        </ul>
+        </br>
+
+
+    </nav>
+</div>
+
+<form enctype="multipart/form-data" method="post" th:action="@{/print/upload}">
+
+    <h1>打印文件上传</h1>
+    <input id="uploader" multiple name="files" onchange="showFileNames()" type="file"/>
+    <br/>
+    <label for="uploader">选择文件</label>
+    <div class="file-names">未选择文件</div>
+    <button class="submit-btn">上传</button>
+</form>
+
+<div class="sidebar">
+    <h2>注意</h2>
+    <ul class="playlist">
+
+        <br><br>
+        <spand>
+            <b style="font-size: 20px">欢迎来到校园线上打印店</b><br>
+            <h3>在这里你可以:</h3>
+            上传需要打印的文件<br>
+            <b>注意，您应将文件名规范设置</b><br>
+            格式：姓名+手机号+打印要求（黑白/彩印。单面/双面）<br>
+            <br>
+            如：小李15229843826黑白<br>
+            <br>
+            若因文件名不规范发生的错误，本小店概不负责<br>
+            <br>
+            <br>
+            <h4>打印价格表</h4>
+            <li>双面黑白（每张） 0.3元</li>
+            <li>单面黑白（每张）0.15</li>
+            <li>双面彩印（每张）1元</li>
+            <li>单面彩印（每张）0.5元</li>
+            <li>……</li>
+            <br>
+        </spand>
+
+    </ul>
+</div>
+
+
+<script>
+    function showFileNames() {
+        let input = document.getElementById("uploader");
+        let files = input.files;
+        let fileNames = [];
+        for (let i = 0; i < files.length; i++) {
+            fileNames.push(files[i].name);
+        }
+        if (fileNames.length > 0) {
+            document.querySelector(".file-names").innerHTML = "已选择文件：" + fileNames.join(", ");
+        } else {
+            document.querySelector(".file-names").innerHTML = "未选择文件";
+        }
+    }
+</script>
+<div th:replace="Footer::footer"></div>
+</body>
+</html>

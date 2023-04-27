@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>注册页面</title>
+    <script type="text/javascript" th:src="@{/static/js/jquery.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/register.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+</head>
+<body>
+
+<!-- 页眉 -->
+<div th:replace="Header::header"></div>
+
+<h2>欢迎注册</h2>
+
+<form method="get" th:action="@{/user/UserRegister}">
+    <label for="username">用户名：</label>
+    <input @blur="inU" id="username" name="username" required type="text">
+    <span class="error" id="username-error"></span><br>
+
+    <label for="password">密码：</label>
+    <input  id="password" name="password" required type="password">
+    <span class="error" id="password-error"></span><br>
+
+    <label for="rePassword">确认密码：</label>
+    <input id="rePassword" name="rePassword" required type="password">
+    <span class="error" id="rePassword-error"></span><br>
+
+    <label for="email">邮箱：</label>
+    <input  id="email" name="email" required type="email">
+    <span class="error" id="email-error"></span><br>
+
+    <label for="phone">手机号：</label>
+    <input id="phone" name="phone_num" required type="tel">
+    <span class="error" id="phone-error"></span><br>
+
+    <input type="submit" value="提交">
+    <input type="reset" value="重置">
+</form>
+
+<!-- 页脚 -->
+<div th:replace="Footer::footer"></div>
+
+<!-- 加载JavaScript -->
+<script type="text/javascript">
+    window.onload = function() {
+        // 隐藏所有错误提示框
+        document.querySelectorAll(".error").forEach(function(error) {
+            error.style.display = "none";
+        });
+
+        // 监听失去焦点事件，进行验证
+        document.querySelectorAll("input").forEach(function(input) {
+            input.addEventListener("blur", function(event) {
+                validateInput(event.target);
+            });
+        });
+    };
+    // 验证输入内容
+    function validateInput(input) {
+        var value = input.value.trim();
+        var error = document.querySelector("#" + input.id + "-error"); // 找到对应的错误提示框
+
+        // 验证手机号
+        if (input.id === "phone") {
+            if (value.length !== 11) {
+                error.innerHTML = "手机号长度必须是11位";
+                error.style.display = "";
+            } else {
+                error.style.display = "none";
+            }
+        }
+
+        // 验证用户名
+        if (input.id === "username") {
+            if (value === "admin" || value === "printBoos") {
+                error.innerHTML = "非法输入";
+                error.style.display = "";
+            } else if (value.length < 5 || value.length > 10) {
+                error.innerHTML = "用户名长度必须在5-10位之间";
+                error.style.display = "";
+            } else {
+                error.style.display = "none";
+            }
+        }
+
+        // 验证邮箱格式
+        if (input.id === "email") {
+            var pattern = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+            if (!pattern.test(value)) {
+                error.innerHTML = "邮箱格式错误，请重新输入";
+                error.style.display = "";
+            } else {
+                error.style.display = "none";
+            }
+        }
+
+        // 验证密码
+        if (input.id === "password" || input.id === "rePassword") {
+            var password = document.querySelector("#password");
+            var rePassword = document.querySelector("#rePassword");
+            if (input.id === "password") {
+                if (value.length < 6) {
+                    error.innerHTML = "密码长度不能小于6位";
+                    error.style.display = "";
+                } else if (rePassword.value && value !== rePassword.value) {
+                    error.innerHTML = "两次密码输入不一致，请重新输入";
+                    error.style.display = "";
+                } else {
+                    error.style.display = "none";
+                }
+            }
+            if (input.id === "rePassword") {
+                if (value !== password.value) {
+                    error.innerHTML = "两次密码输入不一致，请重新输入";
+                    error.style.display = "";
+                } else {
+                    error.style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<!-- CSS 样式 -->
+<style type="text/css">
+    /* 错误提示框样式 */
+    .error {
+        color: red;
+        font-size: 12px;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+</style>
+</body>
+</html>

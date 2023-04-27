@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+
+    <title>快递信息</title>
+    <style>
+        /* 样式代码省略 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", "Segoe UI", "Helvetica", "Arial", sans-serif;
+        }
+
+        #app {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .pickup-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .delivery-info {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .info-item span:first-child {
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            cursor: pointer;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 6px 12px;
+            text-align: center;
+            text-decoration: none;
+            width: 120px;
+        }
+
+        .find-button {
+            background-color: #4caf50;
+            margin-top: 20px; /* 新增代码 - 调整按钮与上方元素之间的距离 */
+            height: 50px; /* 新增代码 - 调整按钮高度 */
+            display: flex; /* 新增代码 - 设置为flex布局以水平居中 */
+            align-items: center; /* 新增代码 - 设置垂直居中 */
+            justify-content: center; /* 新增代码 - 设置水平居中 */
+        }
+
+        .find-button a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        header {
+            background-color: #1c3d61;
+            line-height: 4em; /* 调整行高 */
+        }
+
+        header h1 {
+            color: white;
+            text-align: center;
+            margin: 0; /* 去除默认的外边距 */
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px; /* 可选 - 调整按钮与上方元素之间的距离 */
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1 style="text-align:center;">下载打印文件</h1>
+</header>
+<br>
+
+<div id="app">
+    <div class="pickup-wrapper">
+        <!--kd发布的快递信息-->
+        <div class="delivery-info" th:each="file : ${files}">
+            <form >
+                文件名
+                <p th:text="${file.fileName}">
+            </form>
+        </div>
+    </div>
+
+    <div class="find-button button-container">
+        <div class="find-button button"><a th:href="@{/print/download}">下载所有文件</a></div>
+    </div>
+</div>
+</body>
+</html>

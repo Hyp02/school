@@ -1,0 +1,175 @@
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: "华文中宋", "STZhongsong", serif;
+}
+#myDiv {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+header {
+    background-color: #1c3d61;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    height:80px;
+
+}
+header h1 {
+    width: 320px;
+    height: 50px;
+    color: #ffffff;
+    margin-top: 40px; /* 向下移动 20 像素 */
+    font-size: 28px; /* 字体大小为 28 像素 */
+}
+nav {
+    background-color: #393939;
+    overflow: hidden;
+    width: 200px; /* 设置导航栏宽度 */
+    left: 0; /* 设置左边距为0 */
+    top: 200px; /* 设置顶部距离 */
+    width: 200px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+nav li {
+    margin-right: 40px;
+    width: 200px;
+}
+
+nav li:last-of-type {
+    margin-right: 0;
+}
+
+nav a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+    background-color: #3b3938;
+    /*左栏鼠标移动字体显示颜色*/
+    color: #1d760b;
+}
+
+main {
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #333;
+}
+
+.buttons {
+    margin-top: 10px;
+    color: blue;
+    text-align: center;
+}
+
+.buttons a {
+    display: inline-block;
+    background-color: #1d760b;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.buttons a:hover {
+    background-color: #393939;
+}
+.content-box h-top {
+    background-color: #f5f2f0;
+    overflow: hidden;
+    display: block;
+    position: absolute;left: 0;top:15px;
+}
+.logo{
+    float: left;
+}
+#header_img {
+    height: 102px;
+    width: 120px;
+    top: 100px;
+}
+#slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:auto;
+    width:100%;
+}
+
+#slider img {
+    width: 80%;
+    margin: auto;
+    box-shadow: 2px 2px 3px #999;
+}
+.sidebar {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sidebar .playlist {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.sidebar .playlist li {
+    color: #35d913;
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddb33d;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap; /* 防止文本折行 */
+    overflow: hidden; /* 超出部分隐藏 */
+    text-overflow: ellipsis; /* 超出部分用省略号表示 */
+}
+
+.sidebar .playlist li:hover {
+    background-color: #336699;; /* 当鼠标悬停在选项上时，将选项背景色设置为白色 */
+}
+
+.sidebar .playlist li.active {
+    color: #333; /* 当前处于活动状态的选项的文字颜色为深灰色 */
+    font-weight: bold; /* 当前处于活动状态的选项的文字加粗 */
+    background-color: #ffffff; /* 当前处于活动状态的选项的背景色为白色 */
+}

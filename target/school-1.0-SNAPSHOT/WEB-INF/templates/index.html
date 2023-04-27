@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script th:src="@{/static/js/jquery.js}" type="text/javascript"></script>
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+    <title>校园服务平台</title>
+    <script type="text/javascript">
+        $(function () {
+            $("#indexFindJob").click(function () {
+                alert("您还没有登录，先登录！");
+                this.href="/school/login";
+            })
+        })
+    </script>
+
+
+</head>
+<body id="myDiv">
+<div th:replace="Header::header"></div>
+<div style="position: fixed;float: left; margin-right: 20px;margin-top: 50px;">
+    <nav>
+
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/}">首页</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a style="" th:href="@{/kd/getAllKdInfo}">代送服务</a></span></li>
+        </ul>
+        <br>
+        <ul>
+            <li><span style="text-align:center;"><a style="" th:href="@{/print/printIndex}">打印服务</a></span></li>
+        </ul>
+
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a href="http://zsw.slxy.edu.cn/">招生信息</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/studentServer}">学习资源</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/examServer}">考试服务</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a
+                    href="http://www.slxy.edu.cn:1170/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t=1680699648407">教务系统</a></span>
+            </li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a id="indexFindJob" th:href="@{/findJob}">校园招聘</a></span></li>
+        </ul>
+        </br>
+
+
+    </nav>
+</div>
+<main style="float: left; margin-left: 190px;width: 1000px;height: 500px">
+
+    <div id="slider">
+
+        <img alt="image 3" style="display:block;" th:src="@{/static/img/3.jpg}">
+        <img alt="image 4" style="display:none;" th:src="@{/static/img/4.jpg}">
+        <img alt="image 5" style="display:none;" th:src="@{/static/img/5.jpg}">
+        <img alt="image 6" style="display:none;" th:src="@{/static/img/6.jpg}">
+        <img alt="image 7" style="display:none;" th:src="@{/static/img/7.jpg}">
+        <img alt="image 8" style="display:none;" th:src="@{/static/img/8.jpg}">
+        <img alt="image 9" style="display:none;" th:src="@{/static/img/8.jpg}">
+    </div>
+
+    <script>
+        var currentSlideIndex = 0;
+        var slides = document.getElementById("slider").getElementsByTagName("img");
+        setInterval(function () {
+            // 隐藏当前图片
+            slides[currentSlideIndex].style.display = "none";
+            // 计算下一张图片的索引
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            // 显示下一张图片
+            slides[currentSlideIndex].style.display = "block";
+        }, 2500);
+    </script>
+</main>
+<div class="sidebar">
+    <h2>学校新闻</h2>
+    <ul class="playlist">
+        <h1>对不起，请你先登录</h1>
+    </ul>
+</div>
+
+
+<div class="buttons" style="position: fixed; top: 20px; right: 20px;">
+    <a th:href="@{/login}">登录</a>
+    <a th:href="@{/register}">注册</a>
+</div>
+
+<div th:replace="Footer::footer"></div>
+
+</body>
+</html>

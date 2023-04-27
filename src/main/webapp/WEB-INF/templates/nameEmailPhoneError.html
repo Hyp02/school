@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+        p {
+            line-height: 1.5;
+            font-size: 16px;
+            color: #666;
+        }
+        a {
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="Header::header"></div>
+<div class="container">
+    <h1>注册失败</h1>
+    <p>对不起，注册失败！</p>
+    <br>
+    <p th:text="${registerError}"></p>
+    <p><a th:href="@{/}">返回首页</a></p>
+    <br>
+    <p><a th:href="@{/register}">重新注册</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 打开组件扫描 -->
+    <context:component-scan base-package="com.hyp"></context:component-scan>
+    <context:annotation-config></context:annotation-config>
+    <!--配置视图解析器-->
+    <!-- 配置Thymeleaf视图解析器 -->
+    <bean id="viewResolver"
+          class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <!--定义优先级-->
+        <property name="order" value="1"/>
+        <!--配置文件编码方式-->
+        <property name="characterEncoding" value="UTF-8"/>
+        <!--thymeleaf的一个模板-->
+        <property name="templateEngine">
+            <bean class="org.thymeleaf.spring5.SpringTemplateEngine">
+                <property name="templateResolver">
+                    <bean
+                            class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+                        <!--使用thymeleaf必须要配置视图前缀和后缀-->
+                        <!-- 视图前缀 -->
+                        <property name="prefix" value="/WEB-INF/templates/"/>
+                        <!-- 视图后缀 -->
+                        <property name="suffix" value=".html"/>
+                        <property name="templateMode" value="HTML5"/>
+                        <property name="characterEncoding" value="UTF-8"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- 配置视图控制器 viewController-->
+    <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
+    <mvc:view-controller path="/test" view-name="test"></mvc:view-controller>
+    <!--登录，成功，失败提示页面-->
+    <mvc:view-controller path="/login" view-name="login"></mvc:view-controller>
+    <mvc:view-controller path="/login_success_remind" view-name="login_success_remind"></mvc:view-controller>
+    <mvc:view-controller path="/login_fail_remind" view-name="login_fail_remind"></mvc:view-controller>
+    <!--注册 成功 失败页面-->
+    <mvc:view-controller path="/register" view-name="register"></mvc:view-controller>
+    <mvc:view-controller path="/register_success_remind" view-name="register_success_remind"></mvc:view-controller>
+    <mvc:view-controller path="/register_fail_remind" view-name="register_fail_remind"></mvc:view-controller>
+    <!--已经登录-->
+<!--    <mvc:view-controller path="/alreadyLogin" view-name="alreadyLogin"></mvc:view-controller>-->
+    <!--手机号邮箱用户名被占用-->
+    <mvc:view-controller path="/nameEmailPhoneError" view-name="nameEmailPhoneError"></mvc:view-controller>
+    <!--招聘页面-->
+    <mvc:view-controller path="/findJob" view-name="findJob"></mvc:view-controller>
+    <!--快递代取-->
+    <mvc:view-controller path="/KuaiDi" view-name="KuaiDi"></mvc:view-controller>
+    <!--快递信息-->
+    <mvc:view-controller path="/KuaiDiInfo" view-name="KuaiDiInfo"></mvc:view-controller>
+    <!--学业交流页面-->
+    <mvc:view-controller path="/study" view-name="study"></mvc:view-controller>
+    <!--未登录提示页面-->
+    <mvc:view-controller path="/NotLogin" view-name="NotLogin"></mvc:view-controller>
+    <!--添加快递信息失败提示-->
+    <mvc:view-controller path="/AddKdFail" view-name="AddKdFail"></mvc:view-controller>
+    <!--我的信息页面-->
+    <mvc:view-controller path="/selfInfo" view-name="selfInfo"></mvc:view-controller>
+    <!--帮取成功页面-->
+    <mvc:view-controller path="/helpSuccess" view-name="helpSuccess"></mvc:view-controller>
+    <!--帮取失败-->
+    <mvc:view-controller path="/helpFail" view-name="helpFail"></mvc:view-controller>
+
+    <mvc:view-controller path="/printBoos" view-name="printBoos"></mvc:view-controller>
+    <mvc:view-controller path="/adminLoginSuccess" view-name="adminLoginSuccess"></mvc:view-controller>
+
+    <mvc:view-controller path="/SuperAdmin" view-name="SuperAdmin"></mvc:view-controller>
+
+    <mvc:view-controller path="/studentServer" view-name="studentServer"></mvc:view-controller>
+
+    <mvc:view-controller path="/examServer" view-name="examServer"></mvc:view-controller>
+
+
+
+    <!-- 开放对静态资源的访问 -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 开启 SpringMVC 的注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- 数据库连接池 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/school_p?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456789*Gyc"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    </bean>
+
+    <!-- 配置 JdbcTemplate 实例 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--配置文件上传解析器 作用是将上传的文件封装为 MultiPartFile-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+
+</beans>

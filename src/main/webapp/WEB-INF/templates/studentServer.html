@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>学生服务页面</title>
+  <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* 链接样式 */
+    a {
+      color: #000;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    a:hover {
+      color: #007bff;
+      text-decoration: underline;
+    }
+
+    /* 列表样式 */
+    ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    li {
+      background-color: #5fd5ed;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* 链接注释样式 */
+    li::before {
+      content: attr(title);
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="Header::header"></div>
+<h1>学习资源汇总</h1>
+<ul>
+  <li title="百度搜索">
+    <!-- 百度搜索 -->
+    <a href="https://www.baidu.com" target="_blank">百度搜索</a>
+  </li>
+  <li title="知乎问答">
+    <!-- 知乎问答 -->
+    <a href="https://www.zhihu.com" target="_blank">知乎问答</a>
+  </li>
+  <li title="B站视频">
+    <!-- B站视频 -->
+    <a href="https://www.bilibili.com" target="_blank">B站视频</a>
+  </li>
+  <li title="淘宝购物">
+    <!-- 淘宝购物 -->
+    <a href="https://www.taobao.com" target="_blank">淘宝购物</a>
+  </li>
+  <li title="携程旅游">
+    <!-- 携程旅游 -->
+    <a href="https://www.ctrip.com" target="_blank">携程旅游</a>
+  </li>
+  <li title="京东商城">
+    <!-- 京东商城 -->
+    <a href="https://www.jd.com" target="_blank">京东商城</a>
+  </li>
+  <li title="学习强国">
+    <!-- 学习强国 -->
+    <a href="http://www.xuexi.cn" target="_blank">学习强国</a>
+  </li>
+  <li title="超星学习通">
+    <!-- 超星学习通 -->
+    <a href="https://www.chaoxing.com" target="_blank">超星学习通</a>
+  </li>
+  <li title="网易云课堂">
+    <!-- 网易云课堂 -->
+    <a href="https://www.icourse163.org" target="_blank">网易云课堂</a>
+  </li>
+  <li title="Coursera">
+    <!-- Coursera -->
+    <a href="https://www.coursera.org" target="_blank">Coursera</a>
+  </li>
+  <li title="edX">
+    <!-- edX -->
+    <a href="https://edx.org/" target="_blank">edX</a>
+  </li>
+  <li title="LeetCode">
+    <!-- LeetCode -->
+    <a href="https://leetcode-cn.com/" target="_blank">LeetCode</a>
+  </li>
+  <li title="MathWorld（数学世界）">
+    <!-- MathWorld（数学世界） -->
+    <a href="http://mathworld.wolfram.com/" target="_blank">MathWorld（数学世界）</a>
+  </li>
+  <li title="Internet Archive">
+    <!-- Internet Archive -->
+    <a href="https://archive.org/" target="_blank">Internet Archive</a>
+  </li>
+  <li title="Wikibooks">
+    <!-- Wikibooks -->
+    <a href="https://en.wikibooks.org/" target="_blank">Wikibooks</a>
+  </li>
+  <li title="MIT OpenCourseWare">
+    <!-- MIT OpenCourseWare -->
+    <a href="https://ocw.mit.edu/index.htm" target="_blank">MIT OpenCourseWare</a>
+  </li>
+  <li title="Khan Academy">
+    <!-- Khan Academy -->
+    <a href="https://www.khanacademy.org/" target="_blank">Khan Academy</a>
+  </li>
+  <li title="Codecademy">
+    <!-- Codecademy -->
+    <a href="https://www.codecademy.com/" target="_blank">Codecademy</a>
+  </li>
+  <li title="FreeCodeCamp">
+    <!-- FreeCodeCamp -->
+    <a href="https://learn.freecodecamp.org/" target="_blank">FreeCodeCamp</a>
+  </li>
+  <li title="LinkedIn Learning（Lynda）">
+    <!-- LinkedIn Learning（Lynda） -->
+    <a href="https://www.lynda.com/" target="_blank">LinkedIn Learning（Lynda）</a>
+  </li>
+  <li title="Udemy">
+    <!-- Udemy -->
+    <a href="https://www.udemy.com/" target="_blank">Udemy</a>
+  </li>
+  <li title="MOOC">
+    <!-- Udemy -->
+    <a href="https://www.icourse163.org/" target="_blank">MOOC</a>
+  </li>
+</ul>
+<div th:replace="Footer::footer"></div>
+
+<script>
+  // 1. 鼠标悬停效果
+  var links = document.getElementsByTagName("a");
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener("mouseover", function() {
+      this.style.color = "#007bff";
+      this.style.textDecoration = "underline";
+    });
+    links[i].addEventListener("mouseout", function() {
+      this.style.color = "#000";
+      this.style.textDecoration = "none";
+    });
+  }
+
+  // 2. 点击链接效果
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener("click", function() {
+      this.style.color = "#dc3545";
+    });
+  }
+
+  // 3. 页面加载时效果
+  var items = document.getElementsByTagName("li");
+  var delay = 100;
+  for (var i = 0; i < items.length; i++) {
+    items[i].style.opacity = 0;
+    items[i].style.transform = "translateY(20px)";
+    items[i].style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
+    setTimeout(function(item) {
+      item.style.opacity = 1;
+      item.style.transform = "translateY(0)";
+    }, delay * i, items[i]);
+  }
+
+  // 4. 点击列表元素效果
+  for (var i = 0; i < items.length; i++) {
+    items[i].addEventListener("click", function() {
+      this.style.backgroundColor = "#ffc107";
+    });
+  }
+</script>
+</body>
+</html>

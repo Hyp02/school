@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+
+    <title>我的信息</title>
+    <style>
+        /* 更改颜色方案 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F9FC;
+            color: #444;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #ff7f50;
+            font-weight: bold;
+        }
+
+        a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #444;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #F5F9FC;
+            color: #444;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        tbody tr:hover {
+            background-color: #F5F5F5;
+            cursor: pointer;
+        }
+
+        /* 增加图像方案 */
+        .logo {
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* 调整字体和布局方案 */
+        .user-info,
+        .task-info,
+        .help-info {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .user-info b,
+        .task-info b,
+        .help-info b {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            color: #4285f4;
+        }
+
+        p.info {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #666;
+            text-align: justify;
+        }
+
+        .user-info p {
+            margin-bottom: 30px;
+        }
+
+        .task-info h3,
+        .help-info h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #4285f4;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .table-wrap {
+            max-width: 100%;
+            overflow-x: scroll;
+        }
+
+        .btn-confirm {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 15px;
+            color: #fff;
+            background-color: #28a745;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-confirm:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="Header::header"></div>
+<div style="float: left; margin-right: 20px;position: fixed;margin-top: 50px;">
+
+    <nav>
+
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/}">首页</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/kd/getAllKdInfo}" style="">代送服务</a></span></li>
+        </ul>
+        <br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/print/printIndex}" style="">打印服务</a></span></li>
+        </ul>
+
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a href="http://zsw.slxy.edu.cn/">招生信息</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/studentServer}">学习资源</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/examServer}">考试服务</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a
+                    href="http://www.slxy.edu.cn:1170/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t=1680699648407">教务系统</a></span>
+            </li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a id="indexFindJob"th:href="@{/login}">校园招聘</a></span></li>
+        </ul>
+        </br>
+
+
+    </nav>
+</div>
+<h1>我的信息页面</h1>
+
+<div class="container">
+    <section>
+        <h2 class="section-title">用户信息</h2>
+        <h3>账户名</h3>
+        <b><p th:text="${session.login.getUsername()}"></p></b>
+        <h3>手机号</h3>
+        <b><p th:text="${session.login.getPhone_num()}"></p></b>
+        <h3>用户ID</h3>
+        <b> <p th:text="${session.login.getId()}"></p></b>
+    </section>
+    <section>
+        <h2 class="section-title">我的快递</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>任务名称</th>
+                <th>代取人</th>
+                <th>取货码</th>
+                <th>联系方式</th>
+
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <!--将任务-->
+            <tr th:each="helpUserInfo:${session.helpUserInfoList}">
+                <td th:text="${helpUserInfo.getTaskName()}"></td>
+                <td th:text="${helpUserInfo.getHelpName()}"></td>
+                <td th:text="${helpUserInfo.getKdid()}"></td>
+                <td th:text="${helpUserInfo.getHelpPhone()}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+    </section>
+    <section th:each="taskInfo : ${session.taskInfoList}">
+        <h2 class="section-title">代取任务</h2>
+        <table>
+            <thead>
+            <tr>
+                <th >任务ID</th>
+                <th>任务名称</th>
+                <th>收货人</th>
+                <th>取货码</th>
+                <th>送达地址</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            <!--将任务-->
+            <tr>
+                <td th:text="${taskInfo.getId()}"></td>
+                <td th:text="${taskInfo.getTaskName()}"></td>
+                <td th:text="${taskInfo.getSHname()}"></td>
+                <td th:text="${taskInfo.getKdid()}"></td>
+                <td th:text="${taskInfo.getAddress()}"></td>
+                <td>
+                    <!--确认已经送达后，根据取货码将任务栏中的任务删除将代取信息表中的代取删除-->
+                    <a @click="deleteTaskAndHelp" id="yes"
+                       th:href="@{|/task/deleteTaskAndHelp/${taskInfo.getId()}|}">
+                        确认已送达
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <form id="deleteForm" method="post">
+            <input name="_method" type="hidden" value="delete">
+        </form>
+        <script th:src="@{/static/js/vue.js}" type="text/javascript"></script>
+        <script type="text/javascript">
+            var vue = new Vue({
+                el: "#dataTable",
+                methods: {
+                    deleteTaskAndHelp: function (event) {
+                        if (confirm("确认已送达？")) {
+
+                            //根据id获取表单元素
+                            var deleteForm = document.getElementById("deleteForm");
+                            //将触发点击事件的超链接的href属性赋值给表单的action
+                            deleteForm.action = event.target.href;
+                            //提交表单
+                            deleteForm.submit();
+                            //取消超链接的默认行为
+                            event.preventDefault();
+                        }
+                    }
+                }
+            });
+        </script>
+    </section>
+</div>
+
+
+<div th:replace="Footer::footer"></div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>招聘信息</title>
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/static/css/login.css}" type="text/css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .job-block {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+
+        .job-block:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .job-block img {
+            width: 100%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .job-block .job-title {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+
+        .job-block .job-description {
+            padding: 10px;
+            font-size: 14px;
+            text-align: justify;
+            color: #666;
+        }
+
+        .job-block .job-description p:first-child {
+            margin-top: 0;
+        }
+
+        .job-block .job-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f0f2f5;
+        }
+
+        .job-block .job-footer a {
+            color: #1c3d61;
+        }
+
+        header {
+            background-color: #1c3d61;
+            line-height: 1.5em; /* 调整行高 */
+        }
+
+        header h1 {
+            color: white;
+            text-align: center;
+            margin: 0; /* 去除默认的外边距 */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 style="text-align:center;">校园招聘</h1>
+</header>
+<div style="float: left; margin-right: 20px;position: fixed;margin-top: 50px;">
+    <nav>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/}">首页</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a style="" th:href="@{/kd/getAllKdInfo}">代送服务</a></span></li>
+        </ul>
+        <br>
+        <ul>
+            <li><span style="text-align:center;"><a style="" th:href="@{/print/printIndex}">打印服务</a></span></li>
+        </ul>
+
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a href="http://zsw.slxy.edu.cn/">招生信息</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/studentServer}">学习资源</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/examServer}">考试服务</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a
+                    href="http://www.slxy.edu.cn:1170/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t=1680699648407">教务系统</a></span>
+            </li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a id="indexFindJob" th:href="@{/findJob}">校园招聘</a></span></li>
+        </ul>
+        </br>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="job-block">
+                <img alt="图片找不到了" th:src="@{/static/img/索尼.jpg}">
+                <div class="job-title">索尼</div>
+                <div class="job-description">
+                    <p>索尼一是一家领先的互联网公司，成立于 2010 年，总部位于北京。</p>
+                    <p>现招聘以下职位：</p>
+                    <ul>
+                        <li>前端工程师（1 名）</li>
+                        <li>后端工程师（2 名）</li>
+                        <li>数据分析师（1 名）</li>
+                    </ul>
+                </div>
+                <div class="job-footer">
+                    <div><i class="fa fa-building"></i> 公司一</div>
+                    <a href="https://www.sony.com.cn/content/sonyportal_hr/Campus_Recruitment.html">索尼校招官网</a>
+                </div>
+            </div>
+
+            <div class="job-block">
+                <img alt="图片找不到了" th:src="@{/static/img/京东.jpg}">
+                <div class="job-title">京东</div>
+                <div class="job-description">
+                    <p>公司二是一家新兴的科技公司，专注于人工智能领域，总部位于上海。</p>
+                    <p>现招聘以下职位：</p>
+                    <ul>
+                        <li>数据分析改善岗 运营类</li>
+                        <li>高级研发项目经理</li>
+                        <li>储备人才岗</li>
+                        <li> 资产运营岗</li>
+                        <li>体验提升岗</li>
+                        <li>计划运营岗</li>
+                    </ul>
+                </div>
+                <div class="job-footer">
+                    <div><i class="fa fa-building"></i> 公司二</div>
+                    <a href="https://campus.jd.com/">京东校招官网</a>
+                </div>
+            </div>
+
+            <div class="job-block">
+                <img alt="图片找不到了" th:src="@{/static/img/华为.jpg}">
+                <div class="job-title">华为招聘信息</div>
+                <div class="job-description">
+                    <p>公司三是一家新兴的科技公司，专注于人工智能领域，总部位于上海。</p>
+                    <p>现招聘以下职位：</p>
+                    <ul>
+                        <li>芯片与器件设计工程师</li>
+                        <li>硬件技术工程师</li>
+                        <li>软件开发工程师</li>
+                        <li>财经专员</li>
+                        <li>数字能源BD（小语种）</li>
+                        <li>财经专员小语种（专业类）</li>
+                        <li> 文档专员（专业类）</li>
+                        <li>财经数据标注专员（专业类）</li>
+                        <li>勘测设计专员（专业类）</li>
+                        <li>机器学习工程师（1 名）</li>
+                        <li>自然语言处理工程师（2 名）</li>
+                    </ul>
+                </div>
+                <div class="job-footer">
+                    <div><i class="fa fa-building"></i> 公司三</div>
+                    <a href=" https://career.huawei.com/reccampportal/portal5/index.html">华为校招官网</a>
+                </div>
+            </div>
+
+            <div class="job-block">
+                <img alt="图片找不到了" th:src="@{/static/img/阿里.jpg}">
+                <div class="job-title">阿里巴巴招聘信息</div>
+                <div class="job-description">
+                    <p>公司三是一家新兴的科技公司，专注于人工智能领域，总部位于上海。</p>
+                    <p>现招聘以下职位：</p>
+                    <ul>
+                        <li>行业运营-物流产品方向（本地生活）</li>
+                        <li> 游戏策划师-非文案方向</li>
+                        <li> 游戏策划师-非文案方向（灵犀互娱）</li>
+                        <li>算法工程师-三维重建方向（C-Star)</li>
+                        <li>算法工程师-视频编解码（阿里星Lab）</li>
+                        <li>GIS开发工程师</li>
+                        <li>游戏策划师-文案方向</li>
+                        <li>算法工程师-渲染引擎</li>
+                        <li>机器学习工程师（1 名）</li>
+                        <li>自然语言处理工程师（2 名）</li>
+                    </ul>
+                </div>
+                <div class="job-footer">
+                    <div><i class="fa fa-building"></i> 公司四</div>
+                    <a href="https://talent.alibaba.com/campus/home?lang=zh">阿里校招官网</a>
+                </div>
+
+                <div class="job-block">
+                    <img alt="图片找不到了" th:src="@{/static/img/字节.png}">
+                    <div class="job-title">字节跳动招聘信息</div>
+                    <div class="job-description">
+                        <p>公司三是一家新兴的科技公司，专注于人工智能领域，总部位于上海。</p>
+                        <p>现招聘以下职位：</p>
+                        <ul>
+                            <li>创意短片拍摄实习生-朝夕光年</li>
+                            <li>游戏本地化实习生-朝夕光年</li>
+
+                            <li> 知识库运营实习生-飞书</li>
+
+                            <li> 游戏系统策划-朝夕光年</li>
+                        </ul>
+                        <
+                    </div>
+                    <div class="job-footer">
+                        <div><i class="fa fa-building"></i> 公司四</div>
+                        <a href=" https://jobs.bytedance.com/campus/?referral_code=BRHJTMX">字节跳动校招官网</a>
+                    </div>
+                    <div class="job-block">
+                        <img alt="图片找不到了" th:src="@{/static/img/大疆.png}">
+                        <div class="job-title">大疆招聘信息</div>
+                        <div class="job-description">
+                            <p>公司三是一家新兴的科技公司，专注于人工智能领域，总部位于上海。</p>
+                            <p>现招聘以下职位：</p>
+                            <ul>
+                                <li> 实习生（售前）</li>
+                                <li>实习生（赛事技术执行）</li>
+                                <li> 实习生（图像算法）</li>
+                                <li> 实习生（企业文化）</li>
+                                <li> 实习生（数据分析）</li>
+                                <li> 电商运营实习生（数据）</li>
+                                <li> 实习生（自动化测试开发）</li>
+                                <li> 实习生（测试开发）</li>
+                            </ul>
+                        </div>
+                        <div class="job-footer">
+                            <div><i class="fa fa-building"></i> 公司四</div>
+                            <a href="https://we.dji.com/zh-CN/campus/position?project=intern&from=sec_nav">大疆校招官网</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
+        <div style="position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); background-color: #1c3d61; color: #fff; padding: 10px 20px;">
+            <button><a href="https://www.zhipin.com/xiaoyuan/?ka=tab_school_recruit_click">更多校招信息(点击前往)</a></button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

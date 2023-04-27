@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css">
+    <title>校园服务平台</title>
+
+</head>
+<body id="myDiv">
+<div th:replace="Header::header"></div>
+<div style="float: left; margin-right: 20px;position: fixed;margin-top: 50px;">
+
+    <nav>
+
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/alreadyLogin}">首页</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a style="" th:href="@{/kd/getAllKdInfo}">代送服务</a></span></li>
+        </ul>
+        <br>
+        <ul>
+            <li><span style="text-align:center;"><a style="" th:href="@{/print/printIndex}">打印服务</a></span></li>
+        </ul>
+
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a href="http://zsw.slxy.edu.cn/">招生信息</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/studentServer}">学习资源</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a th:href="@{/examServer}">考试服务</a></span></li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a
+                    href="http://www.slxy.edu.cn:1170/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t=1680699648407">教务系统</a></span>
+            </li>
+        </ul>
+        </br>
+        <ul>
+            <li><span style="text-align:center;"><a id="indexFindJob" th:href="@{/findJob}">校园招聘</a></span></li>
+        </ul>
+        </br>
+
+
+    </nav>
+</div>
+<main style="float: left; margin-left: 190px;width: 1000px;height: 500px">
+
+    <div id="slider">
+
+        <img alt="image 3" style="display:block;" th:src="@{/static/img/3.jpg}">
+        <img alt="image 4" style="display:none;" th:src="@{/static/img/4.jpg}">
+        <img alt="image 5" style="display:none;" th:src="@{/static/img/5.jpg}">
+        <img alt="image 6" style="display:none;" th:src="@{/static/img/6.jpg}">
+        <img alt="image 7" style="display:none;" th:src="@{/static/img/7.jpg}">
+        <img alt="image 8" style="display:none;" th:src="@{/static/img/8.jpg}">
+        <img alt="image 9" style="display:none;" th:src="@{/static/img/8.jpg}">
+    </div>
+
+    <script>
+        var currentSlideIndex = 0;
+        var slides = document.getElementById("slider").getElementsByTagName("img");
+        setInterval(function () {
+            // 隐藏当前图片
+            slides[currentSlideIndex].style.display = "none";
+            // 计算下一张图片的索引
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            // 显示下一张图片
+            slides[currentSlideIndex].style.display = "block";
+        }, 2500);
+    </script>
+</main>
+<div class="sidebar">
+    <h2>学校新闻</h2>
+    <ul class="playlist">
+        <li><a href="http://www.slxy.edu.cn/info/1082/14606.htm">2023年商洛市首届全民健身提升月活动在我校启动</a></li>
+        <li><a href="http://www.slxy.edu.cn/info/1081/14615.htm">西安交通大学教授温军受聘为我校客座教授</a></li>
+        <li><a href="http://www.slxy.edu.cn/info/1081/14616.htm">省秦创原高层次人才项目调研组来我校调研指导工作</a></li>
+        <li><a href="http://www.slxy.edu.cn/info/1082/14621.htm国培计划（2022）">我校召开秦岭康养大数据陕西高校工程研究中心建设推进会</a></li>
+        <li><a href="http://www.slxy.edu.cn/info/1082/14633.htm">陕西群众足球甲级联赛（商洛赛区）在我校开赛</a></li>
+        <li><a href="http://www.slxy.edu.cn/info/1082/14630.htm">国培计划（2022）”——陕西省小学骨干校长能力提升培训项目在我校顺利开班</a></li>
+        <br><br>
+        <spand>
+            <b style="font-size: 20px">欢迎来到校园服务平台</b><br>
+            <h3>在这里你可以:</h3>
+            发布校园快递代取信息<br>
+            第一时间掌握学校新闻<br>
+            提供在线打印功能<br>
+            一键直达教务系统<br>
+            了解校招信息<br>
+        </spand>
+
+    </ul>
+</div>
+<div class="buttons" style="position: fixed; top: 20px; right: 20px;">
+    <a th:href="@{|/task/getSelfInfo/${session.login.getUsername()}|}">我的信息</a>
+</div>
+<div th:replace="Footer::footer"></div>
+</body>
+</html>

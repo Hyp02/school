@@ -1,0 +1,72 @@
+/* 设置页面样式 */
+body {
+    background: #FFFFFF; /* 背景颜色为白色 */
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif; /* 字体设置为微软雅黑或 Helvetica 等常见字体 */
+}
+
+h2 {
+    text-align: center; /* 居中显示标题 */
+}
+
+/* 设置表单样式 */
+form {
+    margin: 0 auto; /* 水平居中 */
+    padding: 100px; /* 设置内边距 */
+    border: 1px solid #ccc; /* 边框样式 */
+    max-width: 400px; /* 最大宽度为 400px */
+}
+
+label {
+    display: inline-block; /* 内联元素 */
+    width: 80px; /* 宽度为 80px */
+    text-align: right; /* 文本右对齐 */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+    width: 200px; /* 宽度为 200px */
+    height: 30px; /* 高度为 30px */
+}
+
+/* 设置提交和重置按钮样式 */
+input[type="submit"],
+input[type="reset"] {
+    margin-left: 80px; /* 左边距为 80px */
+    margin-top: 20px; /* 上边距为 20px */
+    padding: 10px 20px; /* 内边距为 10px 上下，20px 左右 */
+    background-color: #4caf50; /* 背景颜色为绿色 */
+    border: none; /* 去掉边框 */
+    color: #fff; /* 文字颜色为白色 */
+    cursor: pointer; /* 鼠标光标为手型 */
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+/* 鼠标移动到按钮上时的样式 */
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: #FFA000; /* 背景颜色变为深橙色 */
+}
+
+/* 错误提示框样式 */
+#error-box {
+    display: flex; /* 设置弹性布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    position: fixed; /* 固定定位 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 宽度为 100% */
+    height: 100%; /* 高度为 100% */
+    background-color: rgba(0, 0, 0, 0.5); /* 背景颜色为半透明黑色 */
+    z-index: 99; /* 层级设置为 99 */
+}
+
+#error-text {
+    background-color: #FFFFFF; /* 背景颜色为白色 */
+    padding: 20px; /* 内边距为 20px */
+    border-radius: 5px; /* 圆角半径为 5px */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
+}
